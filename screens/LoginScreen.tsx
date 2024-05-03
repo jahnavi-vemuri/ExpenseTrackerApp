@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import { RootStackParamList } from '../App';
+import { useExpenseContext } from '../context/ExpenseContext';
+import { API_URLS } from '../constants/apiConstants';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -12,12 +14,36 @@ const LoginScreen = () => {
   const [password, setPassword] = useState('');
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { dispatch, setLoggedInUserId } = useExpenseContext();
+  const [focusedField, setFocusedField] = useState('');
 
-  const handleLogin = () => {
-    console.log('Username:', username);
-    console.log('Password:', password);
-    navigation.navigate('Expenses');
-  };
+  const handleLogin = async () => {
+    try {
+        const response = await fetch(`${API_URLS.BASE_URL}${API_URLS.USERS}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const users = await response.json();
+        const user = users.find((user: any) => user.username === username && user.password === password);
+
+        if (user) {
+            setLoggedInUserId(user.id);
+            setUsername(''); 
+            setPassword('');
+            console.log('Logged in user id:', user.id);
+            console.log('Logged in username:', user.username);
+            navigation.navigate('Expenses');
+        } else {
+            Alert.alert('Login failed', 'Invalid username or password');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        Alert.alert('Login failed', 'Please check your internet connection and try again');
+    }
+};
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -26,18 +52,22 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: focusedField === 'username' ? '#102C57' : '#AF8260' }]}
         placeholder="Username"
         onChangeText={text => setUsername(text)}
         value={username}
+        onFocus={() => setFocusedField('username')}
+        onBlur={() => setFocusedField('')}
       />
-      <View style={styles.passwordContainer}>
+      <View style={[styles.passwordContainer, { borderColor: focusedField === 'password' ? '#102C57' : '#AF8260' }]}>
         <TextInput
           style={styles.passwordInput}
           placeholder="Enter Password"
           secureTextEntry={!isPasswordVisible}
           value={password}
           onChangeText={text => setPassword(text)}
+          onFocus={() => setFocusedField('password')}
+          onBlur={() => setFocusedField('')}
         />
         <TouchableOpacity
           style={styles.eyeIcon}

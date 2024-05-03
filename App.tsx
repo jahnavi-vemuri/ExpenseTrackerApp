@@ -5,7 +5,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ExpensesScreen from './screens/ExpensesScreen';
 import AddExpenseScreen from './screens/AddExpenseScreen';
-import { ExpenseProvider } from './ExpenseContext';
+import { ExpenseProvider } from './context/ExpenseContext';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -24,9 +24,11 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Expenses" component={ExpensesScreen} />
-        <Stack.Screen name="AddExpense" component={AddExpenseScreen} />
+        <Stack.Screen  name="AddExpense" component={AddExpenseScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     </ExpenseProvider>
   );
 }
+
+

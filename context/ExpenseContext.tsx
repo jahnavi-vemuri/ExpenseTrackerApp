@@ -1,17 +1,18 @@
-import React, { createContext, useReducer, useContext, ReactNode } from 'react';
+import React, { createContext, useReducer, useContext, ReactNode, useState } from 'react';
 
 export const ADD_EXPENSE = 'ADD_EXPENSE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
 export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 export const SET_EXPENSES = 'SET_EXPENSES';
 
-interface Expense {
+export interface Expense {
   date: string;
   id: string;
   title: string;
   description: string;
   amount: number;
   category: string;
+  userId: string; 
 }
 
 interface ExpenseAction {
@@ -22,6 +23,12 @@ interface ExpenseAction {
 interface ExpenseContextType {
   expenses: Expense[];
   dispatch: React.Dispatch<ExpenseAction>;
+  loggedInUserId: string;
+  setLoggedInUserId: React.Dispatch<React.SetStateAction<string>>;
+  deleteExpense: (id: string) => void;
+  editExpense: (expense: Expense) => void;
+  selectedExpense: Expense | null;
+  setSelectedExpense: React.Dispatch<React.SetStateAction<Expense | null>>;
 }
 
 const ExpenseContext = createContext<ExpenseContextType | undefined>(undefined);
@@ -57,34 +64,22 @@ interface ExpenseProviderProps {
 
 export const ExpenseProvider: React.FC<ExpenseProviderProps> = ({ children }) => {
   const [expenses, dispatch] = useReducer(expenseReducer, [
-    {
-      id: '1',
-      title: 'Grocery Shopping',
-      description: 'Weekly grocery shopping at Walmart',
-      amount: 100,
-      category: 'Groceries',
-      date: '2024-04-29'
-    },
-    {
-      id: '2',
-      title: 'Movie Night',
-      description: 'Watching a movie with friends',
-      amount: 50,
-      category: 'Entertainment',
-      date: '2024-04-28'
-    },
-    {
-      id: '3',
-      title: 'Book Purchase',
-      description: 'Buying novels from a bookstore',
-      amount: 30,
-      category: 'Education',
-      date: '2024-04-30'
-    },
   ]);
 
+  const [selectedExpense, setSelectedExpense] = useState<Expense | null>(null);
+
+  const [loggedInUserId, setLoggedInUserId] = useState('');
+
+  const deleteExpense = (id: string) => {
+    dispatch({ type: DELETE_EXPENSE, payload: id });
+  };
+
+  const editExpense = (editedExpense: Expense) => {
+    dispatch({ type: EDIT_EXPENSE, payload: editedExpense });
+  };
+
   return (
-    <ExpenseContext.Provider value={{ expenses, dispatch }}>
+    <ExpenseContext.Provider value={{ expenses, dispatch, loggedInUserId, setLoggedInUserId, deleteExpense, editExpense, selectedExpense, setSelectedExpense }}>
       {children}
     </ExpenseContext.Provider>
   );
