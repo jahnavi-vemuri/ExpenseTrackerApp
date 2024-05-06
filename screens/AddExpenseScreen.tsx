@@ -92,7 +92,7 @@ const AddExpenseScreen = () =>{
             title,
             description,
             amount: parseFloat(amount), 
-            category: category ? data.find(item => item.value === category)?.label : '',
+            category: data.find(item => item.value === category)?.label || category,
             date: selectedDate ? formatDate(selectedDate) : new Date().toLocaleDateString(),
             userId: loggedInUserId,
         };
@@ -185,7 +185,7 @@ const AddExpenseScreen = () =>{
     <TextInput
         style={styles.input}
         placeholder="Enter Custom Category"
-        value={category || ''} // Make sure this always has a string value
+        value={category || ''}
         onChangeText={(text) => setCategory(text)}
     />
 ) : (

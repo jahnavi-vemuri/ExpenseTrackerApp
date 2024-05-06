@@ -148,7 +148,7 @@ const ExpensesScreen = () => {
         />
         <IconButton
         icon="sort"
-        iconColor={isSortClicked ? '#102C57' : '#AF8260'}
+        iconColor={isSortClicked ? '#102C57' : '#AF8260'} 
         size={30}
         onPress={changeSortedExpensesTitle}/>
       </View>
