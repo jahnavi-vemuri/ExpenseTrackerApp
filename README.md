@@ -15,9 +15,11 @@ Here attaching iOS simulator screenshots.
 
 <img width="297" alt="Screenshot 2024-05-08 at 11 45 05 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/280f7ea1-1e7c-4792-afbf-39af6a9a2afe">
 <img width="305" alt="Screenshot 2024-05-08 at 11 45 20 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/597d7bae-d937-4df5-9574-6c9e6a8678f2">
+<img width="298" alt="Screenshot 2024-05-08 at 11 53 06 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/88ca0e71-a4ed-4501-9d3b-c6ec9681b17f">
 <img width="310" alt="Screenshot 2024-05-08 at 11 44 16 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/2d2641e5-569d-460f-ad95-b05bd4896841">
 <img width="312" alt="Screenshot 2024-05-08 at 11 44 06 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/8cba4051-d370-4512-8d3c-cb5db32302ed">
 <img width="319" alt="Screenshot 2024-05-08 at 11 44 32 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/ed83b586-368e-489e-9759-3966d9550679">
 <img width="303" alt="Screenshot 2024-05-08 at 11 44 46 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/939bdaab-fa1a-410e-bf68-9738997e34ee">
+<img width="300" alt="Screenshot 2024-05-08 at 11 52 41 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/d8b8b198-fabf-4804-a3dd-ccf4567b0138">
 <img width="296" alt="Screenshot 2024-05-08 at 11 43 16 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/12e3d524-cb58-4035-8190-ad87eb0417f6">
 <img width="305" alt="Screenshot 2024-05-08 at 11 43 39 AM" src="https://github.com/jahnavi-vemuri/ExpenseTrackerApp/assets/127096031/5bf69fe4-e6fd-48ac-a051-c24c2dafb0cd">
