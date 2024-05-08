@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Modal, Pressable } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal, Pressable, Alert } from 'react-native';
 import { Card, IconButton } from 'react-native-paper';
 import { Expense } from '../context/ExpenseContext';
 
@@ -35,9 +35,27 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ item, onDelete, onEdit }) => 
                   onPress={() => onEdit(item)}
                   iconColor="white"
                 />
-                <TouchableOpacity onPress={() => onDelete(item.id)}>
-                  <IconButton icon="delete" iconColor='white' />
-                </TouchableOpacity>
+                <TouchableOpacity
+                onPress={() =>
+                  Alert.alert(
+                    'Delete Item',
+                    'Are you sure you want to delete this item?',
+                    [
+                      {
+                        text: 'Cancel',
+                        style: 'cancel',
+                      },
+                      {
+                        text: 'OK',
+                        onPress: () => onDelete(item.id),
+                        style: 'destructive',
+                      },
+                    ],
+                    { cancelable: false }
+                  )
+                  }>
+  <IconButton icon="delete" iconColor='white' />
+</TouchableOpacity>
               </View>
             </View>
           </Card.Content>
